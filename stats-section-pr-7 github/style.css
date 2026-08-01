@@ -1,0 +1,109 @@
+ * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 80px 20px;
+        }
+
+        /* ==========================================================================
+           🧱 2. THE MASTER CSS GRID WRAPPER
+           ========================================================================== */
+        .stat-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+        }
+
+        /* ==========================================================================
+           💎 3. GLOWING STATS CARDS (Flexbox Inside Grid Element)
+           ========================================================================== */
+        .stats-card {
+            background: rgba(30, 41, 59, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 25px;
+            text-align: center;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            /* Internal alignment engine */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+
+            /* Smooth timing for the hover glow explosion */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stats-card:hover {
+            background: rgba(30, 41, 59, 0.8);
+            border-color: #ff2a4b;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 42, 75, 0.35);
+        }
+
+        /* ==========================================================================
+           🔄 4. THE LIVE SPINNING EMOJI ENGINE
+           ========================================================================== */
+
+        .stat-emoji {
+            font-size: 3.5rem;
+            display: inline-block;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+            /* Attaching the custom rotation keyframes below */
+            animation: continuous-spin 8s linear infinite;
+        }
+
+        @keyframes continuous-spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Speed up rotation slightly when the user hovers on the card */
+        .stats-card:hover .stat-emoji {
+            animation-duration: 3s;
+            /* animation-play-state: paused; */
+        }
+
+        .stats-card h3 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            /* Gradient color text effect */
+            background: linear-gradient(45deg, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stats-card h4 {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #ff2a4b;
+            font-weight: 400;
+        }
+
+        .stats-card p {
+            font-size: 1.05rem;
+            font-weight: 400;
+            line-height: 1.4;
+            color: hsl(215, 20%, 65%);
+        }
